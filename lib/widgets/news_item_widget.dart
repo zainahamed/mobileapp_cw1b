@@ -60,7 +60,7 @@ class NewsItemWidget extends StatelessWidget {
         ),
       )
           : BoxDecoration(
-        color: Colors.grey[200],
+        color: Colors.grey[300],
         borderRadius: BorderRadius.circular(8.0),
       ),
     );
