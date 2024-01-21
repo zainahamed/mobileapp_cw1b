@@ -26,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('News App'),
+        title: Text('News24'),
       ),
       body: FutureBuilder<List<NewsModel>>(
         future: newsFuture,
