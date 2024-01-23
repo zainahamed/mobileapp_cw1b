@@ -12,6 +12,7 @@ class _HomeScreenState extends State<HomeScreen> {
   late ApiService apiService;
   late Future<List<NewsModel>> newsFuture;
   late TextEditingController searchController;
+  String selectedCategory = 'All';
 
   @override
   void initState() {
@@ -35,6 +36,8 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Column(
         children: [
           _buildSearchBar(),
+
+          _buildFilterChips(),
           Expanded(
             child: FutureBuilder<List<NewsModel>>(
               future: newsFuture,
@@ -61,6 +64,37 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+
+  Widget _buildFilterChips() {
+    return Wrap(
+      spacing: 8.0,
+      children: [
+        for (var category in ['All', 'Books', 'Culture', 'Entertainment', 'Fashion', 'Food', 'Health', 'Internet', 'Politics', 'Space', 'Sports', 'World'])
+          ChoiceChip(
+            label: Text(category),
+            selected: selectedCategory == category,
+            onSelected: (selected) {
+              _onCategorySelected(selected, category);
+            },
+            backgroundColor: selectedCategory == category ? Colors.blue : Colors.white,
+            selectedColor: Colors.blue,
+            labelStyle: TextStyle(
+              color: selectedCategory == category ? Colors.white : Colors.blue,
+            ),
+            elevation: selectedCategory == category ? 4.0 : 1.0,
+            shadowColor: Colors.blue,
+            shape: RoundedRectangleBorder(
+              side: BorderSide(
+                color: Colors.blue,
+                width: selectedCategory == category ? 0.0 : 1.0,
+              ),
+              borderRadius: BorderRadius.circular(20.0),
+            ),
+          ),
+      ],
+    );
+  }
+
 
   Widget _buildSearchBar() {
     return Padding(
@@ -96,17 +130,33 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  void _updateNews(String query) {
+    setState(() {
+      selectedCategory = 'All'; // Reset category to 'All'
+      newsFuture = _fetchNews(query);
+    });
+  }
+
   void _resetNews() {
     setState(() {
       searchController.clear(); // Clear the search query
+      selectedCategory = 'All'; // Reset category to 'All'
       newsFuture = _fetchNews('default'); // Fetch the default news list
     });
   }
 
-
-  void _updateNews(String query) {
+  void _onCategorySelected(bool selected, String category) {
     setState(() {
-      newsFuture = _fetchNews(query);
+      if (selected) {
+        // If the category is selected, update the news list with the selected category
+        selectedCategory = category;
+        newsFuture = _fetchNews(category.toLowerCase());
+      } else {
+        // If the category is unselected, reset to default news list
+        selectedCategory = 'All';
+        newsFuture = _fetchNews('default');
+      }
+      searchController.clear(); // Clear the search query when a category is selected
     });
   }
 }

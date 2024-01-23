@@ -45,7 +45,7 @@ class NewsItemWidget extends StatelessWidget {
                   },
                 ),
                 IconButton(
-                  icon: Icon(Icons.save),
+                  icon: Icon(Icons.bookmark_outline),
                   onPressed: () {
                     // Implement logic to save the news
                   },
