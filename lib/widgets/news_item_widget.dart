@@ -14,8 +14,8 @@ class NewsItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-        color: Colors.grey[100], // Slight grey background color
-        elevation: 2.0, // Add elevation for a card-like effect
+        color: Colors.grey[100],
+        elevation: 2.0,
         margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
         child: GestureDetector(
           onTap: () {
@@ -41,7 +41,6 @@ class NewsItemWidget extends StatelessWidget {
                 IconButton(
                   icon: Icon(Icons.favorite_border),
                   onPressed: () {
-                    // Implement logic to mark as favorite
                   },
                 ),
               ],
@@ -53,15 +52,12 @@ class NewsItemWidget extends StatelessWidget {
   Future<void> _launchUrl(String url) async {
     try {
       if (Platform.isAndroid) {
-        // For Android, try using the 'intent' URL scheme with Chrome, fallback to any browser
         await launch('intent://$url#Intent;scheme=http;package=com.android.chrome;end');
       } else {
-        // For iOS and others, use the 'http' scheme
         await launch(url);
       }
     } on PlatformException catch (e) {
       if (e.code == 'ACTIVITY_NOT_FOUND') {
-        // If Chrome is not available, try launching without specifying the browser package
         await launch(url);
       } else {
         print('Error launching URL: $e');
