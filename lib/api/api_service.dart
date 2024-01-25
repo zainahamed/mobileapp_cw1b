@@ -7,8 +7,10 @@ class ApiService {
 
   ApiService(this.apiKey);
 
-  Future<List<Map<String, dynamic>>> getNews(String query) async {
-    final response = await http.get(Uri.parse('$baseUrl?q=$query&apiKey=$apiKey'));
+  Future<List<Map<String, dynamic>>> getNews(String query, String sortBy) async {
+    final response = await http.get(
+      Uri.parse('$baseUrl?q=$query&sortBy=$sortBy&apiKey=$apiKey'),
+    );
 
     if (response.statusCode == 200) {
       final Map<String, dynamic> data = json.decode(response.body);

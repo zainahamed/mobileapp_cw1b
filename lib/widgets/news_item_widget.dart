@@ -83,18 +83,19 @@ class NewsItemWidget extends StatelessWidget {
       height: 80.0,
       decoration: imageUrl != null
           ? BoxDecoration(
-              borderRadius: BorderRadius.circular(8.0),
-              image: DecorationImage(
-                image: NetworkImage(imageUrl),
-                fit: BoxFit.cover,
-              ),
-            )
+        borderRadius: BorderRadius.circular(8.0),
+        image: DecorationImage(
+          image: NetworkImage(imageUrl),
+          fit: BoxFit.cover,
+        ),
+      )
           : BoxDecoration(
-              color: Colors.grey[300],
-              borderRadius: BorderRadius.circular(8.0),
-            ),
+        color: Colors.grey[300],
+        borderRadius: BorderRadius.circular(8.0),
+      ),
     );
   }
+
 
   String _formatPublishedDate(String? publishedAt) {
     try {
