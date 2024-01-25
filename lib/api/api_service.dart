@@ -4,7 +4,6 @@ import 'package:http/http.dart' as http;
 class ApiService {
   final String apiKey;
   final String baseUrl = 'https://newsapi.org/v2/everything';
-
   ApiService(this.apiKey);
 
   Future<List<Map<String, dynamic>>> getNews(String query, String sortBy) async {
