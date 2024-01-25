@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../api/api_service.dart';
 import '../models/news_model.dart';
 import '../widgets/news_item_widget.dart';
+import 'favorites_screen.dart';
+import 'read_later_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -35,6 +37,30 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('News App'),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.favorite),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => FavoritesScreen([]), // Pass your favorite news list here
+                ),
+              );
+            },
+          ),
+          IconButton(
+            icon: Icon(Icons.bookmark),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ReadLaterScreen([]), // Pass your read later news list here
+                ),
+              );
+            },
+          ),
+        ],
       ),
       body: Column(
         children: [
