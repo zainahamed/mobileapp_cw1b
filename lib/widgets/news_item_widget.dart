@@ -44,12 +44,6 @@ class NewsItemWidget extends StatelessWidget {
                     // Implement logic to mark as favorite
                   },
                 ),
-                IconButton(
-                  icon: Icon(Icons.bookmark_outline),
-                  onPressed: () {
-                    // Implement logic to save the news
-                  },
-                ),
               ],
             ),
           ),
