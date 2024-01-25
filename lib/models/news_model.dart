@@ -4,7 +4,6 @@ class NewsModel {
   final String url;
   final String imageUrl;
   final bool isFavorite;
-  final bool isReadLater;
   final String publishedAt;  // Add this property
 
   NewsModel({
@@ -13,7 +12,6 @@ class NewsModel {
     required this.url,
     required this.imageUrl,
     this.isFavorite = false,
-    this.isReadLater = false,
     required this.publishedAt,  // Make sure to include this in the constructor
   });
 
@@ -24,7 +22,7 @@ class NewsModel {
       url: json['url'] ?? '',
       imageUrl: json['urlToImage'] ?? '',
       isFavorite: false,
-      isReadLater: false, publishedAt: '',
+      publishedAt: '',
     );
   }
 
@@ -35,7 +33,7 @@ class NewsModel {
       'url': url,
       'imageUrl': imageUrl,
       'isFavorite': isFavorite,
-      'isReadLater': isReadLater,
+      'publishedAt': publishedAt,
     };
   }
 }
