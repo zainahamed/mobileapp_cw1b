@@ -14,7 +14,7 @@ class _HomeScreenState extends State<HomeScreen> {
   late Future<List<NewsModel>> newsFuture;
   late TextEditingController searchController;
   String selectedCategory = 'All';
-  String selectedSortOption = 'relevance'; // Initialize with the default sort option
+  String selectedSortOption = 'relevance';
   String sortBy = 'default';
 
   @override
@@ -23,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
     apiService = ApiService('3646bcbb298542db98b297634666d561');
     searchController = TextEditingController();
     newsFuture = _fetchNews(selectedCategory, sortBy);
-    _resetNews(); // Add this line to trigger the reset when the app loads
+    _resetNews();
   }
 
   Future<List<NewsModel>> _fetchNews(String query, String sortBy) async {
@@ -43,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => FavoritesScreen([]), // Pass your favorite news list here
+                  builder: (context) => FavoritesScreen([]),
                 ),
               );
             },
@@ -189,7 +189,7 @@ class _HomeScreenState extends State<HomeScreen> {
               _updateNews(searchController.text);
             },
           ),
-          SizedBox(width: 8.0), // Add some spacing between search and reset button
+          SizedBox(width: 8.0),
           ElevatedButton(
             onPressed: () {
               _resetNews();
@@ -211,31 +211,29 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void _updateNews(String query) {
     setState(() {
-      selectedCategory = 'All'; // Reset category to 'All'
+      selectedCategory = 'All';
       newsFuture = _fetchNews(query, sortBy);
     });
   }
 
   void _resetNews() {
     setState(() {
-      searchController.clear(); // Clear the search query
-      selectedCategory = 'All'; // Reset category to 'All'
-      newsFuture = _fetchNews('default', sortBy); // Fetch the default news list
+      searchController.clear();
+      selectedCategory = 'All';
+      newsFuture = _fetchNews('default', sortBy);
     });
   }
 
   void _onCategorySelected(bool selected, String category) {
     setState(() {
       if (selected) {
-        // If the category is selected, update the news list with the selected category
         selectedCategory = category;
         newsFuture = _fetchNews(category.toLowerCase(), sortBy);
       } else {
-        // If the category is unselected, reset to default news list
         selectedCategory = 'All';
         newsFuture = _fetchNews('default', sortBy);
       }
-      searchController.clear(); // Clear the search query when a category is selected
+      searchController.clear();
     });
   }
 }

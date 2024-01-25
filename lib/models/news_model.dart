@@ -4,7 +4,7 @@ class NewsModel {
   final String url;
   final String imageUrl;
   final bool isFavorite;
-  final String publishedAt;  // Add this property
+  final String publishedAt;
 
   NewsModel({
     required this.title,
@@ -12,7 +12,7 @@ class NewsModel {
     required this.url,
     required this.imageUrl,
     this.isFavorite = false,
-    required this.publishedAt,  // Make sure to include this in the constructor
+    required this.publishedAt,
   });
 
   factory NewsModel.fromJson(Map<String, dynamic> json) {

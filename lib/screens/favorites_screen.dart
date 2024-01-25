@@ -20,13 +20,12 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
       body: widget.favoriteNews.isEmpty
           ? Center(child: Text('No favorite news yet.'))
           : ListView.builder(
-        itemCount: widget.favoriteNews.length,
-        itemBuilder: (context, index) {
-          final newsItem = widget.favoriteNews[index];
-          return ListTile(
-            title: Text(newsItem.title),
-            subtitle: Text(newsItem.description),
-            // Add more UI elements based on your data structure
+              itemCount: widget.favoriteNews.length,
+              itemBuilder: (context, index) {
+                final newsItem = widget.favoriteNews[index];
+                return ListTile(
+                  title: Text(newsItem.title),
+                  subtitle: Text(newsItem.description),
           );
         },
       ),
